@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t inazrabuu/fe-app-prod-example -f Dockerfile.dev
+
+script:
+  - docker run inazrabuu/fe-app-prod-example npm run test -- --coverage
