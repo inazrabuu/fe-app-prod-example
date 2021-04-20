@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true inazrabuu/fe-app-prod-example npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker"
+  env: "Feappprod-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-887785090245"
+  bucket_path: "fe-app-prod-example"
+  on:
+    branch: "main"
+  access_key: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
